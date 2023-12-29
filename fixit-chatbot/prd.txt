@@ -1,0 +1,734 @@
+LUCIDITY
+We’re on a mission to build the smart storage of
+tomorrow!
+Lucidity is about helping our customers achieve the full potential
+of the cloud. We are dedicating ourselves to help enterprises
+move data to cloud storage as lucidity makes their life simpler,
+and helps them tap into cloud-native functionalities.
+
+Our Story
+Today’s businesses are rapidly moving towards being cloud-first,
+and once COVID struck, the rate of cloud adoption within
+enterprises also gained speed. 8 out of 10 organizations, today,
+resort to lift and shift with no changes to their underlying
+architecture. This limits their capability to utilize cloud-native
+functionalities, leading to over-provisioning, performance
+limitations and budget overruns.
+We saw an opportunity here and the need for an intelligent
+orchestration solution that can help them bridge this gap. A
+solution which can provide all the benefits of cloud native
+applications sans any modification to application. A solution
+which truly embodies the next phase of DevOps, which industry
+calls as “NoOps”.
+
+Meet the founders
+
+Vatsal Rastogi (CTO)drives our technical vision and manages
+engineering and development. As a software developer involved in
+creating Microsoft Azure, Vatsal saw the vast potential of cloud
+storage and confronted the complexity users face in achieving it. His
+conclusion: We can do better. (And we have!)
+
+Nitin Bhadauria (CEO)keeps the business running smoothly and handles
+sales and customer relations. Both a technologist and an
+entrepreneur, Nitin has launched several startups and managed a
+sales team selling in more than 30 countries in North America, Europe,
+and Southeast Asia.
+
+​
+
+​
+
+​
+
+​
+
+​
+
+​
+
+​
+
+​
+
+​
+
+​
+
+File System Commands:
+● df: Display disk space usage. It shows the amount of disk space used and
+available on file systems.
+● du: Display file and directory space usage. It shows the size of directories
+and their subdirectories.
+● fdisk: Partition table manipulator for disk devices.
+● mkfs: Build a Linux file system.
+Mounting and Unmounting Commands:
+● mount: Mount a file system. It attaches a file system to the directory
+structure.
+● umount: Unmount a file system. It detaches a file system from the
+directory structure.
+Partitioning Commands:
+● parted: A partition manipulation program.
+● gparted: A graphical front-end to the parted tool.
+LVM (Logical Volume Management) Commands:
+● pvcreate: Initialize physical volumes for use in LVM.
+● vgcreate: Create a new volume group.
+● lvcreate: Create a new logical volume.
+RAID (Redundant Array of Independent Disks) Commands:
+● mdadm: Manage MD (multiple device) devices, also known as Software
+RAID.
+Disk Utility Commands:
+● fdisk: Partition table manipulator for disk devices.
+● gdisk: A GUID Partition Table (GPT) manipulation program.
+Filesystem Check and Repair Commands:
+● fsck: Filesystem consistency check and interactive repair.
+● e2fsck: Ext2/Ext3/Ext4 filesystem checker.
+● xfs_repair: XFS filesystem repair utility.
+Filesystem Conversion Commands:
+● convertfs: Convert an ext2 file system to an ext3 file system.
+● tune2fs: Adjust tunable filesystem parameters on ext2/ext3/ext4
+filesystems.
+Swap Space Commands:
+● swapon: Enable devices and files for paging and swapping.
+● swapoff: Disable devices and files for paging and swapping.
+iSCSI (Internet Small Computer System Interface) Commands:
+● iscsiadm: Administration utility for iSCSI.
+
+​
+
+​
+
+​
+
+​
+
+​
+
+​
+
+​
+
+​
+
+Network Block Device (NBD) Commands:
+● nbd-client: Connect to a Network Block Device server.
+● nbd-server: Start an NBD server.
+File and Directory Commands:
+● ls: List files and directories.
+● pwd: Print the current working directory.
+● cd: Change directory.
+● cp: Copy files or directories.
+● mv: Move or rename files and directories.
+● rm: Remove files or directories.
+● mkdir: Create a new directory.
+Text Processing Commands:
+● cat: Concatenate and display the content of files.
+● grep: Search for patterns in files.
+● sed: Stream editor for filtering and transforming text.
+● awk: Pattern scanning and processing language.
+File System Commands:
+● df: Display disk space usage.
+● du: Display file and directory space usage.
+● mount: Mount a file system.
+● umount: Unmount a file system.
+Process Management Commands:
+● ps: Display information about active processes.
+● top: Display and update sorted information about processes.
+● kill: Terminate a process.
+User and Group Management Commands:
+● who: Display information about users who are currently logged in.
+● useradd: Create a new user account.
+● passwd: Change user password.
+● usermod: Modify user account properties.
+Network Commands:
+● ifconfig: Configure network interfaces.
+● ping: Send ICMP Echo Request messages to network hosts.
+● netstat: Display network connections, routing tables, and more.
+● nslookup or dig: Query DNS servers for domain information.
+System Information Commands:
+● uname: Display system information.
+● uptime: Display how long the system has been running.
+
+​
+
+​
+
+​
+
+● free: Display amount of free and used memory in the system.
+● lshw: List hardware information.
+Package Management Commands:
+● apt or yum: Package management tools for installing, updating, and
+removing software packages.
+File Permission Commands:
+● chmod: Change file permissions.
+● chown: Change file owner and group.
+Compression and Archiving Commands:
+● tar: Create, list, extract, or update compressed archives.
+● gzip or bzip2: Compress or decompress files.
+
+windows commands for on-call
+
+Disk / Volume / Partition related command
+
+1
+
+Get All physical Disk
+
+1
+
+get-physicalDisk | Select AdapterSerialNumber, DeviceId,
+
+2
+
+Get physical Disk from unique id
+
+1
+
+get-physicalDisk -UniqueId '%1%' |ConvertTo-Json
+
+3
+
+get physcial disk which are not attached to file system
+
+1
+
+get-physicaldisk -CanPool $True | select-object DeviceId
+
+or can pool is true
+4
+
+Get partition info
+
+1
+
+get-Partition |Select UniqueId -ExpandProperty UniqueId
+
+5
+
+get partition info
+
+1
+
+get-partition | get-volume | Select DriveLetter,Size,Size
+
+6
+
+get volume info
+
+1
+
+get-volume | Select DriveLetter,Size,SizeRemaining| Conve
+
+7
+
+get partition info from drive letter
+
+1
+
+get-partition -DriveLetter '%1%'
+
+8
+
+Get partition from disk number
+
+1
+
+Get-Partition -DiskNumber %1%
+
+9
+
+get volume for partition via unique id
+
+1
+
+get-partition -UniqueId '%1%' |Get-Volume |ConvertTo-Json
+
+10
+
+get virtual disk from physical disk unique-id
+
+1
+
+Get-PhysicalDisk -UniqueId '%1%'| Get-VirtualDisk | Get-D
+
+11
+
+get all physical disk which are part of virtual disk
+
+1
+
+Get-VirtualDisk -FriendlyName '%1%' |Get-StoragePool | ge
+
+2
+
+"AdapterSerialNumber, DeviceId, UniqueId, PhysicalLoc
+
+3
+
+"HealthStatus, Usage | fl
+
+12
+
+get all physical disk which are part of storage pool
+
+1
+
+get-storagepool -FriendlyName 'LuciditySP1' |
+
+13
+
+add physical disk to storage pool
+
+1
+
+Add-PhysicalDisk -StoragePoolFriendlyName '%1%' -Physical
+
+14
+
+mark retire physical disk
+
+1
+
+Set-PhysicalDisk -UniqueId '%1%' -Usage Retired
+
+15
+
+mark disk auto-select ( physical disk)
+
+1
+
+Set-PhysicalDisk -UniqueId '%1%' -Usage AutoSelect
+
+16
+
+remove physical disk from storage pool
+
+1
+
+Remove-PhysicalDisk -PhysicalDisks (Get-PhysicalDisk -Uni
+
+17
+
+get retired physcial disk
+
+1
+
+Get-PhysicalDisk | Where-Object -Property Usage -EQ Reti
+
+18
+
+get storage job
+
+1
+
+Get-StorageJob | fl
+
+19
+
+initialise disk with partition without storage pool
+
+1
+
+Initialize-Disk -Number %1% ; New-Partition
+
+20
+
+remove partition
+
+1
+
+Remove-Partition -DriveLetter %1% -Confirm:$false
+
+get-physic
+
+-DiskNumber
+
+21
+
+get all drive name
+
+1
+
+Get-PSDrive -PSProvider FileSystem | select-object name |
+
+22
+
+get usage by drive letter
+
+1
+
+Get-PSDrive -Name %1% | select-object used | ConvertTo-Js
+
+23
+
+get label from drive letter
+
+1
+
+get-volume -DriveLetter '%1%' | Select-Object FileSystemL
+
+StoragePool / VirtualDisk related command
+
+1
+
+get virtual disk from physical disk unique-id
+
+1
+
+Get-PhysicalDisk -UniqueId '%1%'| Get-VirtualDisk | Get-D
+
+2
+
+get virtual disk info from name
+
+1
+
+Get-VirtualDisk -FriendlyName '%1%' | fl
+
+3
+
+get storagepool info from name
+
+1
+
+Get-StoragePool -FriendlyName '%1%' | fl
+
+4
+
+get all virtual disk
+
+1
+
+Get-VirtualDisk | fl
+
+5
+
+get all storage pool
+
+1
+
+Get-StoragePool | fl
+
+6
+
+get all virtual disks part of storage pool
+
+1
+
+Get-StoragePool -FriendlyName '%1%'| get-virtualDisk | se
+
+7
+
+get virtual disk health status
+
+1
+
+Get-VirtualDisk -FriendlyName '%1%' | Select
+
+8
+
+get storage pool from physical disk unique id
+
+1
+
+get-physicalDisk -UniqueId '%1%' | get-storagepool | Sele
+
+9
+
+get partition info from virtual disk
+
+1
+
+Get-VirtualDisk -FriendlyName '%1%' | Get-Disk | Get-Part
+
+1
+
+get-VirtualDisk
+
+10
+
+HealthStatu
+
+-FriendlyName 'LucidityVD1' | Get-Disk
+
+11
+
+get storage pool from virtual disk
+
+1
+
+Get-VirtualDisk '%1%' | Get-StoragePool|select FriendlyNa
+
+12
+
+get storagepool capacity
+
+1
+
+Get-StoragePool '%1%' |Select @{L='Capacity';E={'{0:N2}GB
+
+13
+
+new storage pool
+
+1
+
+New-StoragePool -FriendlyName '%1%' -StorageSubSystemFri
+
+14
+
+new virtual disk
+
+1
+
+New-VirtualDisk -StoragePoolFriendlyName %1% -FriendlyNam
+
+15
+
+new partition
+
+1
+
+Get-VirtualDisk -FriendlyName %1% | Get-Disk | Where-Obje
+
+16
+
+repair virtual disk
+
+1
+
+Repair-VirtualDisk -FriendlyName '%1%'
+
+17
+
+remove virtual disk
+
+1
+
+Remove-VirtualDisk -FriendlyName '%1%' -Confirm:$false
+
+18
+
+remove storage pool
+
+1
+
+Remove-StoragePool -FriendlyName '%1%' -Confirm:$false
+
+19
+
+optimise storage pool
+
+1
+
+Optimize-StoragePool -FriendlyName '%1%'
+
+File Based command
+
+1
+
+is file exist
+
+1
+
+Microsoft.PowerShell.Management\\Test-Path -Path %1% -Pat
+
+2
+
+download nw agent install script
+
+1
+
+curl https://orchestrator.prod.lucidity.dev/agentinstall/
+
+3
+
+remove folder via robocopy
+
+1
+
+robocopy c:\\lucidity_nw\\empty
+
+C:\\lucidity\\lucidity_b
+
+2
+4
+5
+6
+7
+8
+9
+
+Other command
+
+1
+
+reboot / restart instance
+
+1
+
+shutdown /r
+
+2
+
+systeminfo
+
+1
+
+systeminfo | fl
+
+3
+
+get os version info
+
+1
+
+((Get-WMIObject win32_operatingsystem).name).split('|')[
+
+4
+
+download nightswatch agent install script
+
+1
+
+curl https://orchestrator.prod.lucidity.dev/agentinstall/
+
+5
+
+nightswatch agent nssm job status / start / stop /
+1
+
+C:\\nssm-2.24-103-gdee49fc\\win64\\nssm.exe status nwAge
+
+2
+
+C:\\nssm-2.24-103-gdee49fc\\win64\\nssm.exe start nwAgen
+
+3
+
+C:\\nssm-2.24-103-gdee49fc\\win64\\nssm.exe stop nwAgent
+
+4
+
+C:\\nssm-2.24-103-gdee49fc\\win64\\nssm.exe restart nwAg
+
+1
+
+C:\\nssm-2.24-103-gdee49fc\\win64\\nssm.exe status autos
+
+2
+
+C:\\nssm-2.24-103-gdee49fc\\win64\\nssm.exe start autosc
+
+3
+
+C:\\nssm-2.24-103-gdee49fc\\win64\\nssm.exe stop autosca
+
+4
+
+C:\\nssm-2.24-103-gdee49fc\\win64\\nssm.exe restart auto
+
+restart
+
+6
+
+autoscaler main agent start / stop / status / restart
+
+7
+
+get all services
+
+1
+
+Get-Service | Select Status, Name
+
+8
+
+stop service
+
+1
+
+Stop-Service -Name %1%
+
+9
+
+get cpu load percentage
+
+1
+
+wmic cpu get loadpercentage
+
+2
+10
+
+select patter from file
+
+1
+
+Select-String -Path C:\lucidity\lucidity_agent\log\autosc
+
+11
+
+get last 100 line from file
+
+1
+
+Get-Content C:\lucidity\lucidity_agent\log\autoscalerAgen
+
+1
+
+(echo list vol && echo exit) | DISKPART
+
+1
+
+(echo list disk && echo exit) | DISKPART
+
+12
+
+disk part command
+
+1
+
+get volume info
+( to get mirror status )
+
+2
+
+get disk info
+( to check VD created or not and disk number)
+
+3
+
+import foreign disk
+
+1
+
+(echo select disk='%1%' && echo import && echo exit) | DI
+
+4
+
+update drive letter
+
+1
+
+(echo select volume='%1%' && echo assign letter='%2%' &&
+
+5
+
+rescan disk
+
+1
+
+(echo rescan && echo exit) | DISKPART
+
+6
+7
+8
+9
+10
+11
+12
+13
+
+
